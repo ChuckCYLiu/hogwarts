@@ -5,7 +5,6 @@ import allure
 import pytest
 import yaml
 
-
 with open('../data/calc.yaml') as f:
     param_data = yaml.safe_load(f)
     add = param_data['add']
@@ -22,21 +21,26 @@ with open('../data/calc.yaml') as f:
     div_ids = div['ids']
 
 
+@pytest.fixture(params=add_data, ids=add_ids)
+def get_data(request):
+    data = request.param
+    yield data
+
+
 @allure.feature('测试计算器')
 class TestCalc:
     """计算器测试类"""
 
     @allure.story('测试加法')
     @pytest.mark.run(order=1)
-    @pytest.mark.parametrize('a, b, expect', add_data, ids=add_ids)
-    def test_add(self, get_calc, arrange, a, b, expect):
+    def test_add(self, get_calc, get_data):
         with allure.step('计算两个数相加的和'):
-            result = get_calc.add(a, b)
+            result = get_calc.add(get_data[0], get_data[1])
         print(result)
         # 四舍五入保留两位小数
         if isinstance(result, float):
             result = round(result, 2)
-        assert result == expect
+        assert result == get_data[2]
 
     @allure.story('测试除法')
     @pytest.mark.run(order=4)
