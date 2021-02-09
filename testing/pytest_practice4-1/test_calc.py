@@ -3,7 +3,7 @@
 # @File     : test_calc.py
 import pytest
 
-from python_code.Calculator import Calculator
+from src.python_code.calc import Calculator
 
 
 class TestCalc:

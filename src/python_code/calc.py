@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # @Author   : arthur
-# @File     : Calculator.py
+# @File     : calc.py
 
 class Calculator:
     """简单的计算器"""
@@ -18,4 +18,4 @@ class Calculator:
         try:
             return a / b
         except ZeroDivisionError as e:
-            return e.__class__
+            return e.__class__.__name__

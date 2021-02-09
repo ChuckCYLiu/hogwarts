@@ -1,4 +1,4 @@
-import money
+from testing import money
 
 
 def send_money(salary):

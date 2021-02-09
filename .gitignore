@@ -1,1 +1,5 @@
 /.idea/
+/python_code.egg-info/
+/testing/pytest_practice4-2/.pytest_cache/
+/testing/pytest_practice4-2/allure-report/
+/testing/pytest_practice4-2/result/
